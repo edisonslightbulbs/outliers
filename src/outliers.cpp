@@ -1,8 +1,8 @@
 #include <vector>
 
+#include "logger.h"
 #include "outliers.h"
 #include "point.h"
-#include "logger.h"
 #include "timer.h"
 
 const float IQR = 1.1;
