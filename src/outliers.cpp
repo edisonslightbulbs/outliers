@@ -19,23 +19,20 @@ std::vector<Point> outliers::remove(std::vector<Point>& points)
     Point::sort(points);
 
     /** remove outliers */
-    float sd = 0;
     float sum = 0;
-    float mean = 0;
     float varsum = 0;
-    float variance = 0;
 
     for (auto& point : points) {
         sum += point.m_distance.second;
     }
-    mean = sum / (float)points.size();
+    float mean = sum / (float)points.size();
 
     for (auto& point : points) {
         varsum += (float)pow((point.m_distance.second - mean), 2);
     }
 
-    variance = varsum / (float)points.size();
-    sd = std::sqrt(variance);
+    float variance = varsum / (float)points.size();
+    float sd = std::sqrt(variance);
 
     auto upperBound = mean + (IQR * sd);
     int reject = 0;
@@ -57,23 +54,20 @@ std::vector<float> outliers::remove(std::vector<float>& values)
     std::sort(values.begin(), values.end());
 
     /** remove outliers */
-    float sd = 0;
     float sum = 0;
-    float mean = 0;
     float varsum = 0;
-    float variance = 0;
 
     for (auto& val : values) {
         sum += val;
     }
-    mean = sum / (float)values.size();
+    float mean = sum / (float)values.size();
 
     for (auto& val : values) {
         varsum += (float)pow((val - mean), 2);
     }
 
-    variance = varsum / (float)values.size();
-    sd = std::sqrt(variance);
+    float variance = varsum / (float)values.size();
+    float sd = std::sqrt(variance);
 
     auto upperBound = mean + (IQR * sd);
     int reject = 0;
