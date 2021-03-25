@@ -1,15 +1,11 @@
-#include <vector>
-
-#include "logger.h"
 #include "outliers.h"
 #include "point.h"
-#include "timer.h"
+#include <vector>
 
 const float IQR = 1.1;
 
 std::vector<Point> outliers::remove(std::vector<Point>& points)
 {
-    Timer timer;
     /** find within-point variance using the centroid */
     Point centroid = Point::centroid(points);
     for (auto& point : points) {
@@ -42,14 +38,11 @@ std::vector<Point> outliers::remove(std::vector<Point>& points)
         }
     }
     points.resize(points.size() - reject);
-    LOG(INFO) << timer.getDuration() << " ms: outlier removal runtime";
-
     return points;
 }
 
 std::vector<float> outliers::remove(std::vector<float>& values)
 {
-    Timer timer;
     /** find within-point variance using the centroid */
     std::sort(values.begin(), values.end());
 
@@ -77,7 +70,5 @@ std::vector<float> outliers::remove(std::vector<float>& values)
         }
     }
     values.resize(values.size() - reject);
-    LOG(INFO) << timer.getDuration() << " ms: outlier removal runtime";
-
     return values;
 }
