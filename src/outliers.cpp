@@ -2,7 +2,7 @@
 #include "point.h"
 #include <vector>
 
-const float IQR = 1.1;
+const float IQR = 1.1; // <- Inter quartile range (in theory 1.5)
 
 std::vector<Point> outliers::remove(std::vector<Point>& points)
 {
@@ -43,9 +43,6 @@ std::vector<Point> outliers::remove(std::vector<Point>& points)
 
 std::vector<float> outliers::remove(std::vector<float>& values)
 {
-    /** find within-point variance using the centroid */
-    std::sort(values.begin(), values.end());
-
     /** remove outliers */
     float sum = 0;
     float varsum = 0;
