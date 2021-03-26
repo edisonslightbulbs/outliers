@@ -2,7 +2,7 @@
 #include "point.h"
 #include <vector>
 
-const float IQR = 1.1; // <- Inter quartile range (in theory 1.5)
+const float IQR = 1.5; // <- Inter quartile range (in theory 1.5)
 
 std::vector<Point> outliers::remove(std::vector<Point>& points)
 {
