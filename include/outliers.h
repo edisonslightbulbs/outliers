@@ -15,7 +15,7 @@ namespace outliers {
  * @retval
  *    Vector of 3D points without outliers.
  */
-std::vector<Point> remove(std::vector<Point>& points);
+std::vector<Point> filter(std::vector<Point>& points);
 
 /**
  * remove
