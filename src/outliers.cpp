@@ -4,7 +4,7 @@
 
 const float IQR = 1.5; // <- Inter quartile range (in theory 1.5)
 
-std::vector<Point> outliers::remove(std::vector<Point>& points)
+std::vector<Point> outliers::filter(std::vector<Point>& points)
 {
     /** find within-point variance using the centroid */
     Point centroid = Point::centroid(points);
