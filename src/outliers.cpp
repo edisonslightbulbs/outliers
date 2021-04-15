@@ -40,32 +40,3 @@ std::vector<Point> outliers::filter(std::vector<Point>& points)
     points.resize(points.size() - reject);
     return points;
 }
-
-std::vector<float> outliers::remove(std::vector<float>& values)
-{
-    /** remove outliers */
-    float sum = 0;
-    float varsum = 0;
-
-    for (auto& val : values) {
-        sum += val;
-    }
-    float mean = sum / (float)values.size();
-
-    for (auto& val : values) {
-        varsum += (float)pow((val - mean), 2);
-    }
-
-    float variance = varsum / (float)values.size();
-    float sd = std::sqrt(variance);
-
-    auto upperBound = mean + (IQR * sd);
-    int reject = 0;
-    for (auto& val : values) {
-        if (val > upperBound) {
-            reject++;
-        }
-    }
-    values.resize(values.size() - reject);
-    return values;
-}
